@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avatar专属衣帽间</title>
+    <!-- 添加网站Logo -->
+    <link rel="icon" type="image/png" href="https://s2.loli.net/2025/07/15/5bPeEgtFh8wakQ3.png">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
@@ -16,7 +18,7 @@
             flex-direction: column;
         }
         
-        /* 标题栏样式 */
+        /* 标题栏样式 - 添加Logo */
         .header {
             background: #2c3e50;
             color: white;
@@ -24,6 +26,14 @@
             border-radius: 10px 10px 0 0;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .header-logo {
+            height: 40px;
+            width: 40px;
+            object-fit: contain;
         }
         .header h1 {
             font-size: 24px;
@@ -246,7 +256,9 @@
     </style>
 </head>
 <body>
+    <!-- 添加Logo到标题栏 -->
     <div class="header">
+        <!-- <img src="images/logo.png" alt="Avatar衣帽间Logo" class="header-logo"> -->
         <h1>Avatar专属衣帽间</h1>
     </div>
     
