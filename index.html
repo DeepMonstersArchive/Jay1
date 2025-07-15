@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avatar专属衣帽间</title>
     <!-- 添加网站Logo -->
-    <link rel="icon" type="image/png" href="https://s2.loli.net/2025/07/15/5bPeEgtFh8wakQ3.png">
+    <link rel="icon" type="image/png" href="https://s2.loli.net/2025/07/15/xJRrP4lsX2I3UFC.png">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
@@ -69,9 +69,12 @@
             margin-bottom: 12px; /* 减少间距 */
         }
         .toolbar-section {
-            margin: 12px 0; /* 减少间距 */
-            padding-bottom: 12px; /* 减少间距 */
-            border-bottom: 1px solid #eee;
+            position: relative;            
+            margin: 10px 4px; /* 减少间距 */
+            padding-bottom: 5px;
+            margin-bottom: 0px;
+            border-bottom: 4px solid #eee;
+            /* border-bottom: none; */
         }
         .toolbar-section h3 {
             color: #2c3e50;
@@ -80,7 +83,7 @@
         }
         
         /* 图片列表容器 - 更紧凑布局 */
-        .image-list-container {
+        .image-list-container {            
             flex: 1;
             overflow-y: auto;
             max-height: calc(100vh - 300px); /* 调整高度 */
@@ -89,6 +92,7 @@
             scrollbar-color: #4a6fa5 #f0f0f0;
         }
         .image-list-container::-webkit-scrollbar {
+            margin-bottom: 20px;
             width: 6px;
         }
         .image-list-container::-webkit-scrollbar-thumb {
@@ -258,7 +262,7 @@
 <body>
     <!-- 添加Logo到标题栏 -->
     <div class="header">
-        <!-- <img src="images/logo.png" alt="Avatar衣帽间Logo" class="header-logo"> -->
+        <img src="https://s2.loli.net/2025/07/15/xJRrP4lsX2I3UFC.png" alt="Avatar衣帽间Logo" class="header-logo">
         <h1>Avatar专属衣帽间</h1>
     </div>
     
