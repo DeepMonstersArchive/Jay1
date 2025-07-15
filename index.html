@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avatar专属衣帽间</title>
-    <!-- 添加网站Logo -->
+    <title>Avatar专属衣帽间 - 平滑移动优化版</title>
     <link rel="icon" type="image/png" href="https://s2.loli.net/2025/07/15/xJRrP4lsX2I3UFC.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
@@ -18,7 +18,6 @@
             flex-direction: column;
         }
         
-        /* 标题栏样式 - 添加Logo */
         .header {
             background: #2c3e50;
             color: white;
@@ -43,7 +42,6 @@
             gap: 10px;
         }
         
-        /* 主容器布局 */
         .container { 
             display: flex; 
             flex: 1;
@@ -52,11 +50,10 @@
             overflow: hidden;
         }
         
-        /* 左侧工具栏 - 更紧凑布局 */
         .toolbar { 
             width: 300px; 
             background: white; 
-            padding: 12px; /* 减少内边距使布局更紧凑 */
+            padding: 12px;
             border-radius: 12px; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             display: flex;
@@ -66,15 +63,14 @@
         .controls-header {
             display: flex;
             gap: 10px;
-            margin-bottom: 12px; /* 减少间距 */
+            margin-bottom: 12px;
         }
         .toolbar-section {
             position: relative;            
-            margin: 10px 4px; /* 减少间距 */
+            margin: 10px 4px;
             padding-bottom: 5px;
             margin-bottom: 0px;
             border-bottom: 4px solid #eee;
-            /* border-bottom: none; */
         }
         .toolbar-section h3 {
             color: #2c3e50;
@@ -82,17 +78,16 @@
             font-size: 18px;
         }
         
-        /* 图片列表容器 - 更紧凑布局 */
-        .image-list-container {            
+        .image-list-container { 
             flex: 1;
             overflow-y: auto;
-            max-height: calc(100vh - 300px); /* 调整高度 */
-            padding-right: 5px;
+            max-height: calc(100vh - 320px);
+            padding: 5px 5px 15px 0;
             scrollbar-width: thin;
             scrollbar-color: #4a6fa5 #f0f0f0;
         }
         .image-list-container::-webkit-scrollbar {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             width: 6px;
         }
         .image-list-container::-webkit-scrollbar-thumb {
@@ -100,12 +95,11 @@
             border-radius: 3px;
         }
         
-        /* 图片项样式 - 更紧凑 */
         .image-item { 
             display: flex; 
             flex-direction: column;
-            padding: 10px; /* 减少内边距 */
-            margin-bottom: 8px; /* 减少间距 */
+            padding: 10px;
+            margin-bottom: 8px;
             border-radius: 8px;
             background: #fff; 
             border: 1px solid #e1e4e8;
@@ -120,7 +114,7 @@
         .image-preview {
             display: flex;
             align-items: center;
-            gap: 8px; /* 减少间距 */
+            gap: 8px;
         }
         .image-item img { 
             width: 80px;
@@ -141,9 +135,8 @@
             justify-content: space-between;
         }
         
-        /* 按钮样式 - 调整长度 */
         button { 
-            padding: 8px 12px; /* 调整内边距 */
+            padding: 8px 12px;
             background: #4a6fa5; 
             color: white; 
             border: none; 
@@ -169,26 +162,24 @@
         }
         .secondary-btn {
             background: #6c757d;
-            padding: 6px 10px; /* 调整内边距 */
+            padding: 6px 10px;
             font-size: 13px;
         }
         .toggle-visibility-btn {
             background: #9b59b6;
         }
         
-        /* 按钮组布局 - 更紧凑 */
         .btn-group-row {
             display: flex;
             gap: 5px;
-            margin-top: 8px; /* 减少间距 */
+            margin-top: 8px;
         }
         .btn-group-row button {
             flex: 1;
         }
         
-        /* 滑块容器 - 更紧凑 */
         .slider-container {
-            margin-top: 6px; /* 减少间距 */
+            margin-top: 6px;
             position: relative;
         }
         .slider-container label {
@@ -208,12 +199,11 @@
             font-size: 11px;
         }
         
-        /* 复选框布局 - 更紧凑 */
         .checkbox-group {
             display: flex;
             gap: 15px;
             align-items: center;
-            margin-top: 8px; /* 减少间距 */
+            margin-top: 8px;
         }
         .checkbox-item {
             display: flex;
@@ -221,14 +211,12 @@
             gap: 6px;
         }
         
-        /* 选中状态 */
         .selected {
             background-color: #e1f0ff;
             border: 2px solid #4a90e2;
             box-shadow: 0 3px 8px rgba(74, 144, 226, 0.2);
         }
         
-        /* 画布容器 */
         .canvas-container { 
             flex: 1; 
             background: white; 
@@ -241,14 +229,13 @@
             min-width: 0;
         }
         #canvas { 
-            background: #f8f9fa; /* 改为纯色背景，去除多余横线 */
+            background: #f8f9fa;
             cursor: grab; 
             flex: 1;
             width: 100%;
             height: 100%;
         }
         
-        /* 状态栏 */
         .status-bar {
             background: #2c3e50;
             color: white;
@@ -257,17 +244,222 @@
             display: flex;
             justify-content: space-between;
         }
+        
+        .snap-indicator {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #4a90e2;
+            border: 1px solid white;
+            border-radius: 50%;
+            z-index: 100;
+            pointer-events: none;
+            box-shadow: 0 0 3px rgba(0,0,0,0.5);
+        }
+        
+        /* 多选框样式 */
+        .selection-box {
+            position: absolute;
+            border: 2px dashed #4a90e2;
+            background-color: rgba(74, 144, 226, 0.2);
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        /* 操作提示 */
+        .operation-tip {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 100;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* ========== 右侧面板样式 ========== */
+        .right-panel {
+            width: 300px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow: hidden;
+        }
+        
+        .panel-section {
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .panel-section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 18px;
+        }
+        
+        .section-header i {
+            font-size: 22px;
+            color: #4a6fa5;
+        }
+        
+        .tips-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .tip-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            border-left: 3px solid #4a90e2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .tip-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: #2c3e50;
+        }
+        
+        .tip-icon {
+            color: #6c757d;
+            transition: transform 0.3s ease;
+        }
+        
+        .tip-content {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .tip-card.expanded .tip-content {
+            max-height: 300px;
+        }
+        
+        .tip-card.expanded .tip-icon {
+            transform: rotate(180deg);
+        }
+        
+        .sponsor-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 10px;
+        }
+        
+        .sponsor-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #e1e4e8;
+            transition: all 0.3s ease;
+        }
+        
+        .sponsor-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .sponsor-logo {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin: 0 auto 10px;
+            display: block;
+        }
+        
+        .sponsor-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #2c3e50;
+            margin-bottom: 1px;
+        }
+        
+        .sponsor-desc {
+            font-size: 12px;
+            color: #6c757d;
+        }
+        
+        .become-sponsor {
+            display: block;
+            text-align: center;
+            background: #4a6fa5;
+            color: white;
+            padding: 5px;
+            border-radius: 6px;
+            margin-top: 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .become-sponsor:hover {
+            background: #3a5a80;
+            transform: translateY(-2px);
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 1200px) {
+            .right-panel {
+                width: 250px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .container {
+                flex-wrap: wrap;
+            }
+            
+            .toolbar, .canvas-container, .right-panel {
+                width: 100%;
+            }
+            
+            .right-panel {
+                order: 3;
+                margin-top: 20px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- 添加Logo到标题栏 -->
     <div class="header">
         <img src="https://s2.loli.net/2025/07/15/xJRrP4lsX2I3UFC.png" alt="Avatar衣帽间Logo" class="header-logo">
         <h1>Avatar专属衣帽间</h1>
     </div>
     
     <div class="container">
-        <!-- 左侧工具栏 -->
         <div class="toolbar">
             <div class="controls-header">
                 <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
@@ -283,31 +475,123 @@
                     </div>
                     <div class="checkbox-item">
                         <input type="checkbox" id="snapToggle" checked>
-                        <label for="snapToggle">启用吸附</label>
+                        <label for="snapToggle">启用吸附<br>(按住ctrl键临时取消)</label>
                     </div>
                 </div>
             </div>
             
             <div class="toolbar-section" style="flex: 1; min-height: 150px;">
                 <h3>图片管理</h3>
-                <div id="imageList" class="image-list-container">
-                    <!-- 图片列表将通过JS动态生成 -->
-                </div>
+                <div id="imageList" class="image-list-container"></div>
             </div>
         </div>
 
-        <!-- 画布区域 -->
         <div class="canvas-container">
+            <div id="operationTip" class="operation-tip">按住Shift键拖动鼠标框选多张图片</div>
             <canvas id="canvas"></canvas>
             <div class="status-bar">
                 <div id="cursorPos">X: 0, Y: 0</div>
                 <div>缩放: <span id="zoomLevel">100%</span></div>
             </div>
+            <div id="selectionBox" class="selection-box" style="display: none;"></div>
+        </div>
+        
+        <!-- 右侧面板 -->
+        <div class="right-panel">
+            <div class="panel-section">
+                <div class="section-header">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>高级使用技巧</h3>
+                </div>
+                <div class="tips-container">
+                    <div class="tip-card" onclick="toggleTip(this)">
+                        <div class="tip-header">
+                            <div class="tip-title">多选与组合</div>
+                            <i class="fas fa-chevron-down tip-icon"></i>
+                        </div>
+                        <div class="tip-content">
+                            按住Shift键拖动鼠标框选多张图片，或按住Ctrl键点击选择多个图片。
+                            选择后可以整体移动、缩放或应用统一操作。
+                        </div>
+                    </div>
+                    
+                    <div class="tip-card" onclick="toggleTip(this)">
+                        <div class="tip-header">
+                            <div class="tip-title">精确定位</div>
+                            <i class="fas fa-chevron-down tip-icon"></i>
+                        </div>
+                        <div class="tip-content">
+                            使用方向键微调位置（↑←↓→），按住Shift键每次移动10像素。
+                            启用网格和吸附功能可以更精确地对齐元素。
+                        </div>
+                    </div>
+                    
+                    <div class="tip-card" onclick="toggleTip(this)">
+                        <div class="tip-header">
+                            <div class="tip-title">图层管理</div>
+                            <i class="fas fa-chevron-down tip-icon"></i>
+                        </div>
+                        <div class="tip-content">
+                            图片列表中的顺序代表图层顺序，上方图片会覆盖下方图片。
+                            使用"置顶"和"置底"按钮调整图层顺序。
+                            隐藏暂时不需要编辑的图层可提高效率。
+                        </div>
+                    </div>
+                    
+                    <div class="tip-card" onclick="toggleTip(this)">
+                        <div class="tip-header">
+                            <div class="tip-title">高效导出</div>
+                            <i class="fas fa-chevron-down tip-icon"></i>
+                        </div>
+                        <div class="tip-content">
+                            导出时系统会自动计算所有可见图片的边界框，生成最小尺寸的图像。
+                            隐藏不需要导出的图层可以缩小最终输出尺寸。
+                            导出文件名包含日期信息，便于版本管理。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel-section">
+                <div class="section-header">
+                    <i class="fas fa-heart"></i>
+                    <h3>鸣谢赞助</h3>
+                </div>
+                <div class="sponsor-grid">
+                    <div class="sponsor-card">
+                        <img src="https://s2.loli.net/2025/07/11/XG4eM6zt7AiHLyu.jpg" alt="Avatar设计工坊" class="sponsor-logo">
+                        <div class="sponsor-name">支付宝扫码</div>
+                        <!-- <div class="sponsor-desc">提供专业设计支持</div> -->
+                    </div>
+                    
+                    <div class="sponsor-card">
+                        <img src="https://s2.loli.net/2025/07/11/Y7yXChklTZmGPKW.jpg" alt="虚拟时尚联盟" class="sponsor-logo">
+                        <div class="sponsor-name">微信扫码</div>
+                        <!-- <div class="sponsor-desc">最新潮流素材库</div> -->
+                    </div>
+                    
+                    <!-- <div class="sponsor-card">
+                        <img src="https://s2.loli.net/2025/07/15/CxOa2Vf1hqRzYv7.png" alt="元宇宙基金会" class="sponsor-logo">
+                        <div class="sponsor-name">元宇宙基金会</div>
+                        <div class="sponsor-desc">创新技术研发</div>
+                    </div>
+                    
+                    <div class="sponsor-card">
+                        <img src="https://s2.loli.net/2025/07/15/6KJp9uQcA5l7mzX.png" alt="数字创意中心" class="sponsor-logo">
+                        <div class="sponsor-name">数字创意中心</div>
+                        <div class="sponsor-desc">创意孵化平台</div>
+                    </div> -->
+                </div>
+                
+                <a href="#" class="become-sponsor">
+                    <i class="fas fa-star"></i> 成为赞助商
+                </a>
+            </div>
         </div>
     </div>
 
     <script>
-        // 核心配置
+        // 核心元素
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         const fileInput = document.getElementById('fileInput');
@@ -318,11 +602,12 @@
         const snapToggle = document.getElementById('snapToggle');
         const cursorPos = document.getElementById('cursorPos');
         const zoomLevel = document.getElementById('zoomLevel');
+        const selectionBox = document.getElementById('selectionBox');
+        const operationTip = document.getElementById('operationTip');
 
         // 状态变量
         let images = [];
-        let selectedImage = null;
-        let selectedIndex = -1;
+        let selectedImages = [];
         let isDragging = false;
         let offsetX, offsetY;
         let horizontalGuides = new Set();
@@ -335,53 +620,60 @@
         const FPS_LIMIT = 60;
         const FRAME_DELAY = 1000 / FPS_LIMIT;
         let resizeTimeout = null;
+        let snapIndicators = [];
 
-        // 初始化
+        // 多选框变量
+        let isMultiSelecting = false;
+        let selectStartX = 0, selectStartY = 0;
+        let selectEndX = 0, selectEndY = 0;
+        
+        // 框选组变量
+        let selectionGroup = null;
+        let selectionGroupOffsetX = 0;
+        let selectionGroupOffsetY = 0;
+        let initialPositions = []; // 存储框选图片的初始位置
+
+        // PPT吸附系统常量
+        const SNAP_MODE = { EDGE: 1, CENTER: 2, SPACING: 3 };
+        const SNAP_THRESHOLD = 8;
+        const SNAP_COLORS = {
+            [SNAP_MODE.EDGE]: '#4a90e2',
+            [SNAP_MODE.CENTER]: '#ff6b6b',
+            [SNAP_MODE.SPACING]: '#27ae60'
+        };
+
+        // ====================== 初始化函数 ====================== //
         function init() {
-            // 设置画布初始尺寸
             updateCanvasSize();
-            
-            // 添加事件监听
+            bindEvents();
+            renderCanvas(); // 初始渲染
+        }
+        
+        function updateCanvasSize() {
+            const container = document.querySelector('.canvas-container');
+            canvas.width = Math.max(100, container.clientWidth);
+            canvas.height = Math.max(100, container.clientHeight - 30);
+        }
+
+        function bindEvents() {
             addBtn.addEventListener('click', () => fileInput.click());
             fileInput.addEventListener('change', handleImageUpload);
             exportBtn.addEventListener('click', exportAsPNG);
-            gridToggle.addEventListener('change', renderCanvas); // 添加网格切换监听
+            gridToggle.addEventListener('change', renderCanvas);
             
-            // 画布事件
             canvas.addEventListener('mousedown', startDrag);
             canvas.addEventListener('mousemove', handleMouseMove);
             canvas.addEventListener('mouseup', endDrag);
             canvas.addEventListener('mouseout', endDrag);
-            canvas.addEventListener('wheel', handleZoom);
-            canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+            canvas.addEventListener('wheel', handleZoom, { passive: false });
+            canvas.addEventListener('contextmenu', e => e.preventDefault());
             
-            // 键盘事件
             document.addEventListener('keydown', handleKeyDown);
-            
-            // 窗口大小变化监听
+            document.addEventListener('keyup', handleKeyUp);
             window.addEventListener('resize', handleResize);
-            
-            // 初始渲染
-            renderCanvas();
         }
 
-        // 更新画布尺寸（自适应）
-        function updateCanvasSize() {
-            const container = document.querySelector('.canvas-container');
-            canvas.width = container.clientWidth;
-            canvas.height = container.clientHeight - 30;
-        }
-
-        // 处理窗口大小变化
-        function handleResize() {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                updateCanvasSize();
-                renderCanvas();
-            }, 200);
-        }
-
-        // 处理图片上传
+        // ====================== 图片管理 ====================== //
         function handleImageUpload(e) {
             const files = e.target.files;
             for (let file of files) {
@@ -391,8 +683,8 @@
                     img.onload = () => {
                         const newImg = {
                             image: img,
-                            x: Math.floor(Math.random() * (canvas.width - img.width/2) / gridSize) * gridSize,
-                            y: Math.floor(Math.random() * (canvas.height - img.height/2) / gridSize) * gridSize,
+                            x: Math.max(0, Math.floor(Math.random() * (canvas.width - img.width/2))),
+                            y: Math.max(0, Math.floor(Math.random() * (canvas.height - img.height/2))),
                             zIndex: images.length,
                             opacity: 1,
                             visible: true,
@@ -401,171 +693,187 @@
                             height: img.height,
                             originalWidth: img.width,
                             originalHeight: img.height,
-                            // 使用序列号代替文件名
                             displayName: `图片${images.length + 1}`
                         };
                         images.push(newImg);
                         renderCanvas();
-                        addImageToList(img.src, images.length - 1);
+                        addImageToList(event.target.result, images.length - 1);
                     };
+                    img.onerror = () => console.error("图片加载失败:", file.name);
                     img.src = event.target.result;
                 };
                 reader.readAsDataURL(file);
             }
         }
 
-        // 将图片添加到左侧列表（优化文件名显示）
         function addImageToList(src, index) {
             const item = document.createElement('div');
             item.className = 'image-item';
             item.dataset.index = index;
             
-            const imgData = images[index];
-            
             item.innerHTML = `
                 <div class="image-preview">
-                    <img src="${src}" alt="${imgData.displayName}">
+                    <img src="${src}" alt="${images[index].displayName}">
                     <div class="item-header">
                         <div class="title">
-                            <span>${imgData.displayName}</span>
+                            <span>${images[index].displayName}</span>
                         </div>
                         <div class="slider-container">
                             <label>缩放比例</label>
-                            <input type="range" min="50" max="200" value="${imgData.scale * 100}" 
+                            <input type="range" min="50" max="200" value="${images[index].scale * 100}" 
                                 oninput="scaleImage(${index}, this.value)" style="width:100%">
-                            <span class="scale-display">${Math.round(imgData.scale * 100)}%</span>
+                            <span class="scale-display">${Math.round(images[index].scale * 100)}%</span>
                         </div>
                     </div>
                 </div>
-                <!-- 按钮组布局优化 -->
                 <div class="btn-group-row">
                     <button class="secondary-btn" onclick="moveLayer(${index}, 'top')">置顶</button>
                     <button class="secondary-btn" onclick="moveLayer(${index}, 'bottom')">置底</button>
                 </div>
                 <div class="btn-group-row">
                     <button class="secondary-btn toggle-visibility-btn" onclick="toggleVisibility(${index})">
-                        ${imgData.visible ? '隐藏' : '显示'}
+                        ${images[index].visible ? '隐藏' : '显示'}
                     </button>
                     <button class="secondary-btn delete-btn" onclick="deleteImage(${index})">删除</button>
                 </div>
             `;
             
-            item.addEventListener('click', () => selectImage(index));
-            imageList.appendChild(item);
-            
-            // 自动滚动到新添加的项
-            item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-
-        // 选择图片
-        function selectImage(index) {
-            selectedIndex = index;
-            selectedImage = images[index];
-            
-            // 更新列表选择状态
-            document.querySelectorAll('.image-item').forEach((item, i) => {
-                item.classList.toggle('selected', i === index);
+            item.addEventListener('click', (e) => {
+                if (e.ctrlKey) {
+                    toggleSelectImage(index);
+                } else {
+                    selectSingleImage(index);
+                }
             });
             
-            renderCanvas();
+            imageList.appendChild(item);
+            item.scrollIntoView({ behavior: "smooth", block: "nearest" });
         }
 
-        // 切换图片可见性
-        window.toggleVisibility = function(index) {
-            images[index].visible = !images[index].visible;
-            images[index].opacity = images[index].visible ? 1 : 0;
+        // ====================== 图片操作函数 ====================== //
+        window.selectSingleImage = function(index) {
+            if (!images[index]) return;
             
-            // 更新UI按钮文字
-            const btn = document.querySelector(`.image-item[data-index="${index}"] .toggle-visibility-btn`);
-            if (btn) {
-                btn.textContent = images[index].visible ? '隐藏' : '显示';
-            }
+            // 清除所有选中状态
+            clearSelections();
             
+            // 选中新图片
+            selectedImages.push(index);
+            updateImageListSelection();
             renderCanvas();
         };
 
-        // 设置图片缩放比例
+        window.toggleSelectImage = function(index) {
+            const idx = selectedImages.indexOf(index);
+            if (idx === -1) {
+                selectedImages.push(index);
+            } else {
+                selectedImages.splice(idx, 1);
+            }
+            updateImageListSelection();
+            renderCanvas();
+        };
+
+        function clearSelections() {
+            selectedImages = [];
+            updateImageListSelection();
+        }
+
+        function updateImageListSelection() {
+            document.querySelectorAll('.image-item').forEach((item, i) => {
+                item.classList.toggle('selected', selectedImages.includes(i));
+            });
+        }
+
+        window.toggleVisibility = function(index) {
+            images[index].visible = !images[index].visible;
+            const btn = document.querySelector(`.image-item[data-index="${index}"] .toggle-visibility-btn`);
+            if (btn) btn.textContent = images[index].visible ? '隐藏' : '显示';
+            renderCanvas();
+        };
+
         window.scaleImage = function(index, percent) {
             const scaleValue = parseInt(percent) / 100;
             images[index].scale = scaleValue;
-            
-            // 更新图片显示尺寸
             images[index].width = images[index].originalWidth * scaleValue;
             images[index].height = images[index].originalHeight * scaleValue;
             
-            // 更新UI标签
             const display = document.querySelector(`.image-item[data-index="${index}"] .scale-display`);
-            if (display) {
-                display.textContent = `${percent}%`;
-            }
-            
+            if (display) display.textContent = `${percent}%`;
             renderCanvas();
         };
 
-        // 调整图层顺序
+        // 修复置顶/置底功能
         window.moveLayer = function(index, action) {
-            const img = images[index];
-            images = images.filter((_, i) => i !== index);
+            // 如果当前图片未被选中，则只移动该图片
+            if (!selectedImages.includes(index)) {
+                clearSelections();
+                selectedImages.push(index);
+            }
+            
+            // 创建一个临时数组保存未选中的图片
+            const unselectedImages = images.filter((_, i) => !selectedImages.includes(i));
+            
+            // 获取选中的图片
+            const selectedImageGroup = images.filter((_, i) => selectedImages.includes(i));
             
             if (action === 'top') {
-                images.push(img);
+                // 置顶：将选中的图片移动到最上面
+                images = [...unselectedImages, ...selectedImageGroup];
             } else if (action === 'bottom') {
-                images.unshift(img);
+                // 置底：将选中的图片移动到最下面
+                images = [...selectedImageGroup, ...unselectedImages];
             }
             
             // 更新zIndex
-            images.forEach((img, i) => img.zIndex = i);
+            images.forEach((img, i) => {
+                img.zIndex = i;
+            });
             
-            // 重建列表
             rebuildImageList();
             renderCanvas();
         };
 
-        // 删除图片
         window.deleteImage = function(index) {
-            images.splice(index, 1);
+            // 如果当前图片未被选中，则只删除该图片
+            if (!selectedImages.includes(index)) {
+                clearSelections();
+                selectedImages.push(index);
+            }
             
-            // 更新zIndex
-            images.forEach((img, i) => img.zIndex = i);
+            // 按索引从大到小排序，避免删除后索引变化
+            selectedImages.sort((a, b) => b - a).forEach(i => {
+                images.splice(i, 1);
+            });
             
-            // 修复：删除图片后重新编号所有图片
             images.forEach((img, i) => {
+                img.zIndex = i;
                 img.displayName = `图片${i + 1}`;
             });
             
-            // 重建列表
             rebuildImageList();
+            clearSelections();
             renderCanvas();
-            
-            // 取消选择
-            selectedImage = null;
-            selectedIndex = -1;
         };
 
-        // 重建图片列表
         function rebuildImageList() {
             imageList.innerHTML = '';
-            images.forEach((img, index) => {
-                addImageToList(img.image.src, index);
-            });
-            
-            // 恢复选择状态
-            if (selectedIndex >= 0 && selectedIndex < images.length) {
-                selectImage(selectedIndex);
-            }
+            images.forEach((img, index) => addImageToList(img.image.src, index));
+            updateImageListSelection();
         }
 
-        // 画布鼠标事件处理
+        // ====================== 画布交互（关键优化部分） ====================== //
         function startDrag(e) {
             const rect = canvas.getBoundingClientRect();
-            const x = (e.clientX - rect.left - startX) / scale;
-            const y = (e.clientY - rect.top - startY) / scale;
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
             
-            // 重置吸附锁
+            const canvasX = Math.round((mouseX - startX) / scale);
+            const canvasY = Math.round((mouseY - startY) / scale);
+            
             snapLock = { horizontal: false, vertical: false };
             
-            // 右键拖动平移画布
-            if (e.button === 2) {
+            if (e.button === 2) { // 右键拖拽画布
                 isDragging = true;
                 startX = e.clientX - startX;
                 startY = e.clientY - startY;
@@ -573,32 +881,59 @@
                 return;
             }
             
-            // 从顶层开始检测点击的图片
+            // 按住Shift键进入多选模式
+            if (e.shiftKey) {
+                isMultiSelecting = true;
+                selectStartX = canvasX;
+                selectStartY = canvasY;
+                selectEndX = canvasX;
+                selectEndY = canvasY;
+                selectionBox.style.display = 'block';
+                updateSelectionBox();
+                canvas.style.cursor = 'crosshair';
+                return;
+            }
+            
+            // 检测图片选择
             for (let i = images.length - 1; i >= 0; i--) {
                 const img = images[i];
                 if (!img.visible) continue;
                 
-                if (x > img.x && x < img.x + img.width &&
-                    y > img.y && y < img.y + img.height) {
-                    selectedImage = img;
-                    selectedIndex = i;
-                    isDragging = true;
-                    offsetX = x - img.x;
-                    offsetY = y - img.y;
+                if (canvasX > img.x && canvasX < img.x + img.width &&
+                    canvasY > img.y && canvasY < img.y + img.height) {
                     
-                    // 更新列表选择状态
-                    selectImage(i);
+                    // 如果图片已经被选中，则保持选中状态
+                    if (!selectedImages.includes(i)) {
+                        if (!e.ctrlKey) {
+                            clearSelections();
+                        }
+                        selectedImages.push(i);
+                        updateImageListSelection();
+                    }
+                    
+                    isDragging = true;
+                    offsetX = canvasX - img.x;
+                    offsetY = canvasY - img.y;
+                    
+                    // 记录选中图片的初始位置和偏移量（关键优化）
+                    initialPositions = selectedImages.map(index => {
+                        const img = images[index];
+                        return {
+                            index,
+                            x: img.x,
+                            y: img.y,
+                            offsetX: canvasX - img.x,  // 鼠标到图片左上角的X偏移
+                            offsetY: canvasY - img.y   // 鼠标到图片左上角的Y偏移
+                        };
+                    });
+                    
                     canvas.style.cursor = 'grabbing';
                     return;
                 }
             }
             
-            // 点击空白区域取消选择
-            selectedImage = null;
-            selectedIndex = -1;
-            document.querySelectorAll('.image-item').forEach(item => {
-                item.classList.remove('selected');
-            });
+            // 未选中图片
+            clearSelections();
         }
 
         function handleMouseMove(e) {
@@ -606,182 +941,435 @@
             const mouseX = e.clientX - rect.left;
             const mouseY = e.clientY - rect.top;
             
-            // 更新光标位置显示
             const canvasX = Math.round((mouseX - startX) / scale);
             const canvasY = Math.round((mouseY - startY) / scale);
             cursorPos.textContent = `X: ${canvasX}, Y: ${canvasY}`;
             
-            // 处理拖拽
             if (isDragging) {
                 drag(e);
             }
+            if (isMultiSelecting) {
+                // 更新终点坐标为当前鼠标位置
+                selectEndX = canvasX;
+                selectEndY = canvasY;
+                updateSelectionBox();
+            }
+        }
+
+        function updateSelectionBox() {
+            // 计算实际选区范围（考虑任意方向拖动）
+            const left = Math.min(selectStartX, selectEndX);
+            const top = Math.min(selectStartY, selectEndY);
+            const right = Math.max(selectStartX, selectEndX);
+            const bottom = Math.max(selectStartY, selectEndY);
+            const width = right - left;
+            const height = bottom - top;
+            
+            // 转换为页面坐标
+            const pageLeft = left * scale + startX;
+            const pageTop = top * scale + startY;
+            const pageWidth = width * scale;
+            const pageHeight = height * scale;
+            
+            // 更新选框位置和尺寸
+            selectionBox.style.left = `${pageLeft}px`;
+            selectionBox.style.top = `${pageTop}px`;
+            selectionBox.style.width = `${pageWidth}px`;
+            selectionBox.style.height = `${pageHeight}px`;
+        }
+
+        // 平滑移动函数（关键优化）
+        function smoothMove(current, target, factor = 0.2) {
+            return current + (target - current) * factor;
         }
 
         function drag(e) {
             if (!isDragging) return;
             
-            const rect = canvas.getBoundingClientRect();
-            const mouseX = (e.clientX - rect.left - startX) / scale;
-            const mouseY = (e.clientY - rect.top - startY) / scale;
-            
-            // 平移画布
-            if (e.button === 2 && !selectedImage) {
-                startX = e.clientX - startX;
-                startY = e.clientY - startY;
+            // 使用requestAnimationFrame确保60FPS流畅性
+            requestAnimationFrame(() => {
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = (e.clientX - rect.left - startX) / scale;
+                const mouseY = (e.clientY - rect.top - startY) / scale;
+                
+                if (e.button === 2 && selectedImages.length === 0) {
+                    startX = e.clientX - startX;
+                    startY = e.clientY - startY;
+                    renderCanvas();
+                    return;
+                }
+                
+                if (selectedImages.length === 0) return;
+                
+                // 重置吸附状态
+                horizontalGuides.clear();
+                verticalGuides.clear();
+                snapIndicators = [];
+                
+                // 更新所有选中图片的位置（保持相对位置不变）
+                selectedImages.forEach((index, i) => {
+                    const img = images[index];
+                    const initial = initialPositions.find(pos => pos.index === index);
+                    
+                    if (initial) {
+                        // 计算目标位置（基于初始偏移量）
+                        const targetX = mouseX - initial.offsetX;
+                        const targetY = mouseY - initial.offsetY;
+                        
+                        // 应用平滑移动（避免跳跃）
+                        img.x = smoothMove(img.x, targetX);
+                        img.y = smoothMove(img.y, targetY);
+                        
+                        // =========== 关键修复开始 ===========
+                        // 计算缩放后的画布实际尺寸（解决缩放边界问题）
+                        const scaledCanvasWidth = canvas.width / scale;
+                        const scaledCanvasHeight = canvas.height / scale;
+                        
+                        // 动态边界保护（考虑缩放后的画布尺寸） 
+                        // 使用边界裕量允许图片在缩放后移动到画布外
+                        const BOUNDARY_MARGIN = 10000; // 允许图片超出画布的范围
+                        
+                        img.x = Math.max(
+                            -BOUNDARY_MARGIN, 
+                            Math.min(img.x, scaledCanvasWidth - img.width + BOUNDARY_MARGIN)
+                        );
+                        img.y = Math.max(
+                            -BOUNDARY_MARGIN, 
+                            Math.min(img.y, scaledCanvasHeight - img.height + BOUNDARY_MARGIN)
+                        );
+                        // =========== 关键修复结束 ===========
+                    }
+                });
+                
+                // 启用吸附检测
+                if (snapToggle.checked && !e.ctrlKey && selectedImages.length > 0) {
+                    checkAlignmentPoints();
+                }
+                
                 renderCanvas();
-                return;
-            }
-            
-            if (!selectedImage) return;
-            
-            // 清空辅助线
-            horizontalGuides.clear();
-            verticalGuides.clear();
-            
-            // 移动图片
-            selectedImage.x = mouseX - offsetX;
-            selectedImage.y = mouseY - offsetY;
-            
-            // 应用PPT式吸附
-            if (snapToggle.checked && !e.ctrlKey) {
-                checkAlignmentPoints();
-            }
-            
-            renderCanvas();
+            });
         }
 
         function endDrag() {
+            if (isMultiSelecting) {
+                finishMultiSelect();
+            }
+            
             isDragging = false;
+            isMultiSelecting = false;
             horizontalGuides.clear();
             verticalGuides.clear();
+            snapIndicators = [];
             canvas.style.cursor = 'default';
+            selectionBox.style.display = 'none';
+            initialPositions = []; // 清除初始位置记录
             renderCanvas();
         }
-
-        // 处理键盘事件
-        function handleKeyDown(e) {
-            // 删除键
-            if ((e.key === 'Delete' || e.key === 'Backspace') && selectedImage) {
-                deleteImage(selectedIndex);
-            }
+        
+        function finishMultiSelect() {
+            // 计算实际选区范围（兼容任意拖动方向）
+            const left = Math.min(selectStartX, selectEndX);
+            const top = Math.min(selectStartY, selectEndY);
+            const right = Math.max(selectStartX, selectEndX);
+            const bottom = Math.max(selectStartY, selectEndY);
             
-            // 方向键微调位置
-            if (selectedImage) {
-                const step = e.shiftKey ? 10 : (gridSize > 0 ? gridSize : 5);
-                switch(e.key) {
-                    case 'ArrowUp':
-                        selectedImage.y -= step;
-                        renderCanvas();
-                        break;
-                    case 'ArrowDown':
-                        selectedImage.y += step;
-                        renderCanvas();
-                        break;
-                    case 'ArrowLeft':
-                        selectedImage.x -= step;
-                        renderCanvas();
-                        break;
-                    case 'ArrowRight':
-                        selectedImage.x += step;
-                        renderCanvas();
-                        break;
+            // 清除当前选择
+            clearSelections();
+            
+            // 添加框选范围内的图片
+            images.forEach((img, index) => {
+                if (!img.visible) return;
+                
+                const imgCenterX = img.x + img.width/2;
+                const imgCenterY = img.y + img.height/2;
+                
+                if (imgCenterX > left && imgCenterX < right && 
+                    imgCenterY > top && imgCenterY < bottom) {
+                    selectedImages.push(index);
                 }
-            }
+            });
+            
+            // 记录初始位置（用于保持相对位置）
+            initialPositions = selectedImages.map(index => ({
+                index,
+                x: images[index].x,
+                y: images[index].y,
+                offsetX: 0,
+                offsetY: 0
+            }));
+            
+            updateImageListSelection();
         }
 
-        // 处理画布缩放
         function handleZoom(e) {
             e.preventDefault();
-            
             const rect = canvas.getBoundingClientRect();
-            const x = (e.clientX - rect.left - startX) / scale;
-            const y = (e.clientY - rect.top - startY) / scale;
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+            
+            const canvasX = (mouseX - startX) / scale;
+            const canvasY = (mouseY - startY) / scale;
             
             const delta = e.deltaY > 0 ? -0.1 : 0.1;
             const newScale = Math.max(0.5, Math.min(3, scale + delta));
             
-            // 调整偏移量以保持缩放中心
-            startX -= (x * (newScale - scale));
-            startY -= (y * (newScale - scale));
+            // 基于鼠标位置缩放
+            startX -= (canvasX * (newScale - scale));
+            startY -= (canvasY * (newScale - scale));
             
             scale = newScale;
             zoomLevel.textContent = Math.round(scale * 100) + '%';
-            
             renderCanvas();
         }
 
-        // 检测对齐点
+        function handleResize() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                updateCanvasSize();
+                renderCanvas();
+            }, 200);
+        }
+
+        function handleKeyDown(e) {
+            // 按下Shift键时隐藏操作提示
+            if (e.key === 'Shift') {
+                operationTip.style.display = 'none';
+            }
+            
+            if ((e.key === 'Delete' || e.key === 'Backspace') && selectedImages.length > 0) {
+                // 从大到小排序索引，然后删除
+                selectedImages.sort((a, b) => b - a).forEach(index => {
+                    images.splice(index, 1);
+                });
+                rebuildImageList();
+                clearSelections();
+            }
+            
+            if (selectedImages.length > 0) {
+                const step = e.shiftKey ? 10 : (gridSize > 0 ? gridSize : 5);
+                switch(e.key) {
+                    case 'ArrowUp': 
+                        selectedImages.forEach(index => images[index].y -= step); 
+                        break;
+                    case 'ArrowDown': 
+                        selectedImages.forEach(index => images[index].y += step); 
+                        break;
+                    case 'ArrowLeft': 
+                        selectedImages.forEach(index => images[index].x -= step); 
+                        break;
+                    case 'ArrowRight': 
+                        selectedImages.forEach(index => images[index].x += step); 
+                        break;
+                }
+                renderCanvas();
+            }
+        }
+        
+        function handleKeyUp(e) {
+            // 松开Shift键时显示操作提示
+            if (e.key === 'Shift') {
+                operationTip.style.display = 'block';
+            }
+        }
+
+        // ====================== PPT吸附系统 ====================== //
         function checkAlignmentPoints() {
-            if (!selectedImage) return;
+            if (selectedImages.length === 0) return;
             
-            const img = selectedImage;
-            const imgCenterX = img.x + img.width / 2;
-            const imgCenterY = img.y + img.height / 2;
-            
-            // 检测画布边缘对齐
-            checkAlignment(img.x, 0, 'vertical');
-            checkAlignment(img.y, 0, 'horizontal');
-            checkAlignment(img.x + img.width, canvas.width, 'vertical');
-            checkAlignment(img.y + img.height, canvas.height, 'horizontal');
-            
-            // 检测画布中心对齐
-            checkAlignment(imgCenterX, canvas.width / 2, 'vertical');
-            checkAlignment(imgCenterY, canvas.height / 2, 'horizontal');
-            
-            // 检测其他图片
-            images.forEach((otherImg) => {
-                if (img === otherImg || !otherImg.visible) return;
-                
-                const otherCenterX = otherImg.x + otherImg.width / 2;
-                const otherCenterY = otherImg.y + otherImg.height / 2;
-                
-                // 中心点对齐
-                checkAlignment(imgCenterX, otherCenterX, 'vertical');
-                checkAlignment(imgCenterY, otherCenterY, 'horizontal');
-                
+            // 只使用第一个选中图片进行吸附检测
+            const index = selectedImages[0];
+            const img = images[index];
+            const imgPoints = {
+                left: img.x,
+                right: img.x + img.width,
+                top: img.y,
+                bottom: img.y + img.height,
+                centerX: img.x + img.width/2,
+                centerY: img.y + img.height/2
+            };
+
+            // 1. 画布边缘吸附
+            checkSnapPoint(imgPoints.left, 0, 'vertical', SNAP_MODE.EDGE);
+            checkSnapPoint(imgPoints.right, canvas.width, 'vertical', SNAP_MODE.EDGE);
+            checkSnapPoint(imgPoints.top, 0, 'horizontal', SNAP_MODE.EDGE);
+            checkSnapPoint(imgPoints.bottom, canvas.height, 'horizontal', SNAP_MODE.EDGE);
+            checkSnapPoint(imgPoints.centerX, canvas.width/2, 'vertical', SNAP_MODE.CENTER);
+            checkSnapPoint(imgPoints.centerY, canvas.height/2, 'horizontal', SNAP_MODE.CENTER);
+
+            // 2. 其他对象吸附
+            images.forEach((otherImg, otherIndex) => {
+                if (selectedImages.includes(otherIndex) || !otherImg.visible) return;
+                const otherPoints = {
+                    left: otherImg.x,
+                    right: otherImg.x + otherImg.width,
+                    top: otherImg.y,
+                    bottom: otherImg.y + otherImg.height,
+                    centerX: otherImg.x + otherImg.width/2,
+                    centerY: otherImg.y + otherImg.height/2
+                };
+
                 // 边缘对齐
-                checkAlignment(img.x, otherImg.x, 'vertical');
-                checkAlignment(img.y, otherImg.y, 'horizontal');
-                checkAlignment(img.x + img.width, otherImg.x + otherImg.width, 'vertical');
-                checkAlignment(img.y + img.height, otherImg.y + otherImg.height, 'horizontal');
-                
-                // 交叉对齐
-                checkAlignment(img.y, otherImg.y + otherImg.height, 'horizontal');
-                checkAlignment(img.x, otherImg.x + otherImg.width, 'vertical');
+                checkSnapPoint(imgPoints.left, otherPoints.left, 'vertical', SNAP_MODE.EDGE);
+                checkSnapPoint(imgPoints.right, otherPoints.right, 'vertical', SNAP_MODE.EDGE);
+                checkSnapPoint(imgPoints.top, otherPoints.top, 'horizontal', SNAP_MODE.EDGE);
+                checkSnapPoint(imgPoints.bottom, otherPoints.bottom, 'horizontal', SNAP_MODE.EDGE);
+
+                // 中心对齐
+                checkSnapPoint(imgPoints.centerX, otherPoints.centerX, 'vertical', SNAP_MODE.CENTER);
+                checkSnapPoint(imgPoints.centerY, otherPoints.centerY, 'horizontal', SNAP_MODE.CENTER);
+
+                // 间距吸附
+                checkSpacingAlignment(img, otherImg);
             });
         }
 
-        // 辅助线吸附逻辑
-        function checkAlignment(pos1, pos2, type) {
-            const threshold = 8 / scale;
-            const snapThreshold = 3 / scale;
-            
-            if (Math.abs(pos1 - pos2) < threshold) {
-                if (type === 'horizontal') {
-                    horizontalGuides.add(pos2);
-                } else {
-                    verticalGuides.add(pos2);
-                }
-                
-                // 吸附效果
-                if (Math.abs(pos1 - pos2) < snapThreshold) {
-                    const axis = type === 'horizontal' ? 'vertical' : 'horizontal';
+        function checkSnapPoint(pos1, pos2, orientation, mode) {
+            const threshold = SNAP_THRESHOLD / scale;
+            const diff = Math.abs(pos1 - pos2);
+
+            if (diff < threshold) {
+                // 记录参考线
+                if (orientation === 'horizontal') horizontalGuides.add(pos2);
+                else verticalGuides.add(pos2);
+
+                // 动态磁吸
+                if (diff < threshold/2 && selectedImages.length > 0) {
+                    const axis = orientation === 'horizontal' ? 'vertical' : 'horizontal';
                     if (!snapLock[axis]) {
-                        if (type === 'horizontal') {
-                            selectedImage.y = pos2 - offsetY;
+                        const img = images[selectedImages[0]];
+                        if (orientation === 'horizontal') {
+                            img.y = pos2 - (mode === SNAP_MODE.EDGE ? offsetY : img.height/2);
                         } else {
-                            selectedImage.x = pos2 - offsetX;
+                            img.x = pos2 - (mode === SNAP_MODE.EDGE ? offsetX : img.width/2);
                         }
                         snapLock[axis] = true;
                     }
                 }
-            } else if (Math.abs(pos1 - pos2) > snapThreshold + 2) {
-                const axis = type === 'horizontal' ? 'vertical' : 'horizontal';
-                snapLock[axis] = false;
+
+                // 添加吸附指示器
+                addSnapIndicator(orientation, pos2, mode);
             }
         }
 
-        // 绘制对齐辅助线
+        function checkSpacingAlignment(img, otherImg) {
+            // 水平等距
+            const hSpacing = Math.abs(img.x - otherImg.x);
+            images.forEach(thirdImg => {
+                if (img === thirdImg || otherImg === thirdImg) return;
+                if (Math.abs(thirdImg.x - img.x - hSpacing) < SNAP_THRESHOLD) {
+                    verticalGuides.add(thirdImg.x);
+                    addSnapIndicator('vertical', thirdImg.x, SNAP_MODE.SPACING);
+                }
+            });
+
+            // 垂直等距
+            const vSpacing = Math.abs(img.y - otherImg.y);
+            images.forEach(thirdImg => {
+                if (img === thirdImg || otherImg === thirdImg) return;
+                if (Math.abs(thirdImg.y - img.y - vSpacing) < SNAP_THRESHOLD) {
+                    horizontalGuides.add(thirdImg.y);
+                    addSnapIndicator('horizontal', thirdImg.y, SNAP_MODE.SPACING);
+                }
+            });
+        }
+
+        function addSnapIndicator(orientation, pos, mode) {
+            snapIndicators.push({
+                type: orientation,
+                position: pos,
+                color: SNAP_COLORS[mode] || '#4a90e2',
+                size: mode === SNAP_MODE.SPACING ? 10 : 6
+            });
+        }
+
+        // ====================== 渲染系统 ====================== //
+        function renderCanvas() {
+            const now = Date.now();
+            if (now - lastRenderTime < FRAME_DELAY) return;
+            lastRenderTime = now;
+            
+            ctx.save();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 1. 绘制网格（背景层）
+            drawGrid();
+            
+            // 2. 应用变换
+            ctx.translate(startX, startY);
+            ctx.scale(scale, scale);
+            
+            // 3. 绘制图片（内容层）
+            [...images]
+                .sort((a, b) => a.zIndex - b.zIndex)
+                .forEach(img => {
+                    if (!img.visible || !img.image.complete) return;
+                    ctx.globalAlpha = img.opacity;
+                    ctx.drawImage(img.image, img.x, img.y, img.width, img.height);
+                });
+            
+            ctx.globalAlpha = 1;
+            
+            // 4. 绘制辅助线（顶层）
+            drawAlignmentGuides();
+            
+            // 5. 绘制选中框
+            selectedImages.forEach(index => {
+                const img = images[index];
+                if (!img.visible) return;
+                
+                ctx.strokeStyle = '#4a6fa5';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([5, 3]);
+                ctx.strokeRect(
+                    img.x - 5, 
+                    img.y - 5,
+                    img.width + 10,
+                    img.height + 10
+                );
+                ctx.setLineDash([]);
+            });
+            
+            // 6. 绘制吸附指示器
+            drawSnapIndicators();
+            
+            ctx.restore();
+        }
+
+        function drawGrid() {
+            if (!gridToggle.checked || gridSize < 5) return;
+            
+            ctx.save();
+            // 移除重置变换矩阵的代码，保留当前变换状态
+            
+            ctx.strokeStyle = 'rgba(200, 200, 220, 0.6)';
+            ctx.lineWidth = 0.5;
+            
+            // 计算缩放后的网格尺寸
+            const scaledGridSize = gridSize * scale;
+            
+            // 计算偏移量（考虑画布平移）
+            const offsetX = startX % scaledGridSize;
+            const offsetY = startY % scaledGridSize;
+            
+            // 绘制水平网格线
+            for (let y = -offsetY; y <= canvas.height; y += scaledGridSize) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+            
+            // 绘制垂直网格线
+            for (let x = -offsetX; x <= canvas.width; x += scaledGridSize) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+            
+            ctx.restore();
+        }
+
         function drawAlignmentGuides() {
             if (horizontalGuides.size === 0 && verticalGuides.size === 0) return;
             
@@ -790,7 +1378,6 @@
             ctx.setLineDash([5, 3]);
             ctx.lineWidth = 1;
             
-            // 绘制水平辅助线
             horizontalGuides.forEach(y => {
                 ctx.beginPath();
                 ctx.moveTo(0, y);
@@ -798,7 +1385,6 @@
                 ctx.stroke();
             });
             
-            // 绘制垂直辅助线
             verticalGuides.forEach(x => {
                 ctx.beginPath();
                 ctx.moveTo(x, 0);
@@ -809,119 +1395,115 @@
             ctx.restore();
         }
 
-        // 绘制网格 - 彻底修复显示问题
-        function drawGrid() {
-            // 关键修复：只有在勾选时才绘制网格
-            if (!gridToggle.checked) return;
-            if (gridSize < 5) return;
-            
+        function drawSnapIndicators() {
             ctx.save();
-            ctx.strokeStyle = 'rgba(200, 200, 220, 0.6)';
-            ctx.lineWidth = 0.5;
-            
-            // 重置变换矩阵，确保网格正确绘制
-            ctx.setTransform(1, 0, 0, 1, 0, 0);
-            
-            // 计算网格偏移（考虑平移）
-            const offsetX = startX % gridSize;
-            const offsetY = startY % gridSize;
-            
-            // 垂直线
-            for (let x = -offsetX; x <= canvas.width; x += gridSize) {
-                ctx.beginPath();
-                ctx.moveTo(x, 0);
-                ctx.lineTo(x, canvas.height);
-                ctx.stroke();
-            }
-            
-            // 水平线
-            for (let y = -offsetY; y <= canvas.height; y += gridSize) {
-                ctx.beginPath();
-                ctx.moveTo(0, y);
-                ctx.lineTo(canvas.width, y);
-                ctx.stroke();
-            }
-            
-            ctx.restore();
-        }
-
-        // 渲染画布
-        function renderCanvas() {
-            const now = Date.now();
-            if (now - lastRenderTime < FRAME_DELAY) return;
-            lastRenderTime = now;
-            
-            ctx.save();
-            
-            // 应用变换
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.translate(startX, startY);
-            ctx.scale(scale, scale);
-            
-            // 绘制网格背景（只有在勾选时绘制）
-            drawGrid();
-            
-            // 按zIndex排序后绘制
-            [...images].sort((a, b) => a.zIndex - b.zIndex).forEach(img => {
-                if (!img.visible) return;
+            snapIndicators.forEach(indicator => {
+                ctx.fillStyle = indicator.color;
                 
-                ctx.globalAlpha = img.opacity;
-                ctx.drawImage(img.image, img.x, img.y, img.width, img.height);
+                if (indicator.type === 'horizontal') {
+                    ctx.beginPath();
+                    ctx.moveTo(0, indicator.position);
+                    ctx.lineTo(canvas.width, indicator.position);
+                    ctx.strokeStyle = `${indicator.color}80`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                    
+                    // 绘制端点圆点
+                    drawIndicatorDot(canvas.width/2, indicator.position, indicator.size);
+                } else {
+                    ctx.beginPath();
+                    ctx.moveTo(indicator.position, 0);
+                    ctx.lineTo(indicator.position, canvas.height);
+                    ctx.strokeStyle = `${indicator.color}80`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                    
+                    drawIndicatorDot(indicator.position, canvas.height/2, indicator.size);
+                }
             });
-            
-            ctx.globalAlpha = 1;
-            
-            // 绘制对齐辅助线
-            drawAlignmentGuides();
-            
-            // 绘制选中框
-            if (selectedImage && selectedImage.visible) {
-                ctx.strokeStyle = '#4a6fa5';
-                ctx.lineWidth = 2;
-                ctx.setLineDash([5, 3]);
-                ctx.strokeRect(
-                    selectedImage.x - 5, 
-                    selectedImage.y - 5,
-                    selectedImage.width + 10,
-                    selectedImage.height + 10
-                );
-                ctx.setLineDash([]);
-            }
-            
             ctx.restore();
         }
 
-        // 导出为PNG
+        function drawIndicatorDot(x, y, size) {
+            ctx.beginPath();
+            ctx.arc(x, y, size, 0, Math.PI*2);
+            ctx.fill();
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        }
+
+        // ====================== 导出功能 ====================== //
         function exportAsPNG() {
-            // 创建临时Canvas
+            const contentRect = calculateContentBoundingBox();
+            if (contentRect.width <= 0 || contentRect.height <= 0) {
+                alert('没有可导出的图片内容');
+                return;
+            }
+            
             const tempCanvas = document.createElement('canvas');
-            tempCanvas.width = canvas.width;
-            tempCanvas.height = canvas.height;
+            tempCanvas.width = contentRect.width;
+            tempCanvas.height = contentRect.height;
             const tempCtx = tempCanvas.getContext('2d');
             
-            // 绘制内容
-            tempCtx.save();
-            tempCtx.translate(startX, startY);
-            tempCtx.scale(scale, scale);
+            // 填充白色背景
+            tempCtx.fillStyle = 'white';
+            tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
             
-            [...images].sort((a, b) => a.zIndex - b.zIndex).forEach(img => {
-                if (!img.visible) return;
-                
-                tempCtx.globalAlpha = img.opacity;
-                tempCtx.drawImage(img.image, img.x, img.y, img.width, img.height);
-            });
+            // 绘制可见图片
+            images.filter(img => img.visible)
+                .sort((a, b) => a.zIndex - b.zIndex)
+                .forEach(img => {
+                    tempCtx.drawImage(
+                        img.image, 
+                        img.x - contentRect.left,
+                        img.y - contentRect.top,
+                        img.width,
+                        img.height
+                    );
+                });
             
-            tempCtx.restore();
-            
-            // 下载
             const link = document.createElement('a');
-            link.download = 'Avatar衣帽间-' + new Date().toISOString().slice(0, 10) + '.png';
+            link.download = `Avatar衣帽间-${new Date().toISOString().slice(0, 10)}.png`;
             link.href = tempCanvas.toDataURL('image/png');
             link.click();
         }
+        
+        function calculateContentBoundingBox() {
+            let minX = Infinity, minY = Infinity;
+            let maxX = -Infinity, maxY = -Infinity;
+            
+            images.filter(img => img.visible).forEach(img => {
+                minX = Math.min(minX, img.x);
+                minY = Math.min(minY, img.y);
+                maxX = Math.max(maxX, img.x + img.width);
+                maxY = Math.max(maxY, img.y + img.height);
+            });
+            
+            if (minX === Infinity) return { left:0, top:0, width:0, height:0 };
+            
+            return {
+                left: minX, 
+                top: minY,
+                width: maxX - minX, 
+                height: maxY - minY
+            };
+        }
 
-        // 初始化应用
-        init();
+        // ====================== 右侧面板交互函数 ====================== //
+        function toggleTip(card) {
+            card.classList.toggle('expanded');
+        }
+
+        // ====================== 启动应用 ====================== //
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                init();
+            } catch (e) {
+                console.error("初始化失败:", e);
+                alert(`错误: ${e.message}`);
+            }
+        });
     </script>
 </body>
 </html>
