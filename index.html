@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avatar-你的专属衣帽间</title>
+    <title>Avatar - 你的专属衣帽间</title>
     <link rel="icon" type="image/png" href="https://s2.loli.net/2025/07/15/xJRrP4lsX2I3UFC.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; 
-            background: #f0f2f5; 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: #f0f2f5;
             color: #333;
             padding: 20px;
             height: 100vh;
             display: flex;
             flex-direction: column;
         }
-        
+
         .header {
             background: #2c3e50;
             color: white;
             padding: 15px 20px;
             border-radius: 10px 10px 0 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 15px;
         }
+
         .header-logo {
             height: 40px;
             width: 40px;
             object-fit: contain;
         }
+
         .header h1 {
             font-size: 24px;
             font-weight: 500;
@@ -41,44 +49,47 @@
             align-items: center;
             gap: 10px;
         }
-        
-        .container { 
-            display: flex; 
+
+        .container {
+            display: flex;
             flex: 1;
             gap: 20px;
             min-height: 0;
             overflow: hidden;
         }
-        
-        .toolbar { 
-            width: 300px; 
-            background: white; 
+
+        .toolbar {
+            width: 300px;
+            background: white;
             padding: 12px;
-            border-radius: 12px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
+
         .controls-header {
             display: flex;
             gap: 10px;
             margin-bottom: 12px;
         }
+
         .toolbar-section {
-            position: relative;            
+            position: relative;
             margin: 10px 4px;
             padding-bottom: 5px;
             margin-bottom: 0px;
             border-bottom: 4px solid #eee;
         }
+
         .toolbar-section h3 {
             color: #2c3e50;
             margin-bottom: 12px;
             font-size: 18px;
         }
-        
-        .image-list-container { 
+
+        .image-list-container {
             flex: 1;
             overflow-y: auto;
             max-height: calc(100vh - 320px);
@@ -86,62 +97,69 @@
             scrollbar-width: thin;
             scrollbar-color: #4a6fa5 #f0f0f0;
         }
+
         .image-list-container::-webkit-scrollbar {
             margin-bottom: 15px;
             width: 6px;
         }
+
         .image-list-container::-webkit-scrollbar-thumb {
             background-color: #4a6fa5;
             border-radius: 3px;
         }
-        
-        .image-item { 
-            display: flex; 
+
+        .image-item {
+            display: flex;
             flex-direction: column;
             padding: 10px;
             margin-bottom: 8px;
             border-radius: 8px;
-            background: #fff; 
+            background: #fff;
             border: 1px solid #e1e4e8;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-            cursor: pointer; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+            cursor: pointer;
             transition: all 0.2s ease;
         }
-        .image-item:hover { 
-            background: #f0f8ff; 
+
+        .image-item:hover {
+            background: #f0f8ff;
             border-color: #a8d0fe;
         }
+
         .image-preview {
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        .image-item img { 
+
+        .image-item img {
             width: 80px;
             height: 80px;
-            object-fit: cover; 
+            object-fit: cover;
             background: #f8f9fa;
             border-radius: 4px;
             border: 1px solid #eee;
             flex-shrink: 0;
         }
+
         .item-header {
             flex: 1;
         }
+
         .item-header .title {
             font-weight: 600;
             margin-bottom: 5px;
             display: flex;
             justify-content: space-between;
         }
-        
-        button { 
+
+        button {
             padding: 8px 12px;
-            background: #4a6fa5; 
-            color: white; 
-            border: none; 
-            border-radius: 6px; 
-            cursor: pointer; 
+            background: #4a6fa5;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
             font-size: 14px;
             font-weight: 500;
             transition: all 0.2s ease;
@@ -150,44 +168,62 @@
             justify-content: center;
             gap: 6px;
         }
-        button:hover { 
-            opacity: 0.9; 
+
+        button:hover {
+            opacity: 0.9;
             transform: translateY(-2px);
         }
+
+
+        /* 区分置顶/置底按钮颜色（可选） */
+        button[onclick*="top"] {
+            background: #4a6fa5;
+        }
+
+        button[onclick*="bottom"] {
+            background: #27ae60;
+        }
+
         .delete-btn {
             background: #e74c3c !important;
         }
+
         .export-btn {
             background: #27ae60;
         }
+
         .secondary-btn {
-            background: #6c757d;
+            background: #4a6fa5;
             padding: 6px 10px;
             font-size: 13px;
         }
+
         .toggle-visibility-btn {
             background: #9b59b6;
         }
-        
+
         .btn-group-row {
             display: flex;
             gap: 5px;
             margin-top: 8px;
         }
+
         .btn-group-row button {
             flex: 1;
         }
-        
+
         .slider-container {
             margin-top: 6px;
             position: relative;
         }
+
         .slider-container label {
             font-size: 13px;
             display: block;
             margin-bottom: 5px;
             color: #555;
         }
+
         .scale-display {
             position: absolute;
             right: 0;
@@ -198,44 +234,46 @@
             border-radius: 3px;
             font-size: 11px;
         }
-        
+
         .checkbox-group {
             display: flex;
             gap: 15px;
             align-items: center;
             margin-top: 8px;
         }
+
         .checkbox-item {
             display: flex;
             align-items: center;
             gap: 6px;
         }
-        
+
         .selected {
             background-color: #e1f0ff;
             border: 2px solid #4a90e2;
             box-shadow: 0 3px 8px rgba(74, 144, 226, 0.2);
         }
-        
-        .canvas-container { 
-            flex: 1; 
-            background: white; 
-            border-radius: 12px; 
-            overflow: hidden; 
-            position: relative; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+
+        .canvas-container {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             display: flex;
             flex-direction: column;
             min-width: 0;
         }
-        #canvas { 
+
+        #canvas {
             background: #f8f9fa;
-            cursor: grab; 
+            cursor: grab;
             flex: 1;
             width: 100%;
             height: 100%;
         }
-        
+
         .status-bar {
             background: #2c3e50;
             color: white;
@@ -244,7 +282,7 @@
             display: flex;
             justify-content: space-between;
         }
-        
+
         .snap-indicator {
             position: absolute;
             width: 8px;
@@ -254,9 +292,9 @@
             border-radius: 50%;
             z-index: 100;
             pointer-events: none;
-            box-shadow: 0 0 3px rgba(0,0,0,0.5);
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
         }
-        
+
         /* 多选框样式 */
         .selection-box {
             position: absolute;
@@ -265,7 +303,7 @@
             pointer-events: none;
             z-index: 10;
         }
-        
+
         /* 操作提示 */
         .operation-tip {
             position: absolute;
@@ -275,33 +313,33 @@
             padding: 8px 12px;
             border-radius: 6px;
             font-size: 13px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             z-index: 100;
             transition: opacity 0.3s ease;
         }
-        
+
         /* ========== 右侧面板样式 ========== */
         .right-panel {
             width: 300px;
             background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             padding: 15px;
             display: flex;
             flex-direction: column;
             gap: 20px;
             overflow: hidden;
         }
-        
+
         .panel-section {
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
         }
-        
+
         .panel-section:last-child {
             border-bottom: none;
         }
-        
+
         .section-header {
             display: flex;
             align-items: center;
@@ -310,18 +348,18 @@
             color: #2c3e50;
             font-size: 18px;
         }
-        
+
         .section-header i {
             font-size: 22px;
             color: #4a6fa5;
         }
-        
+
         .tips-container {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
-        
+
         .tip-card {
             background: #f8f9fa;
             border-radius: 8px;
@@ -330,30 +368,30 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .tip-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        
+
         .tip-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 8px;
         }
-        
+
         .tip-title {
             font-weight: 600;
             font-size: 15px;
             color: #2c3e50;
         }
-        
+
         .tip-icon {
             color: #6c757d;
             transition: transform 0.3s ease;
         }
-        
+
         .tip-content {
             font-size: 13px;
             color: #555;
@@ -362,22 +400,22 @@
             overflow: hidden;
             transition: max-height 0.3s ease;
         }
-        
+
         .tip-card.expanded .tip-content {
             max-height: 300px;
         }
-        
+
         .tip-card.expanded .tip-icon {
             transform: rotate(180deg);
         }
-        
+
         .sponsor-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
             margin-top: 10px;
         }
-        
+
         .sponsor-card {
             background: #f8f9fa;
             border-radius: 8px;
@@ -386,12 +424,12 @@
             border: 1px solid #e1e4e8;
             transition: all 0.3s ease;
         }
-        
+
         .sponsor-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        
+
         .sponsor-logo {
             width: 100px;
             height: 100px;
@@ -399,19 +437,19 @@
             margin: 0 auto 10px;
             display: block;
         }
-        
+
         .sponsor-name {
             font-weight: 600;
             font-size: 14px;
             color: #2c3e50;
             margin-bottom: 1px;
         }
-        
+
         .sponsor-desc {
             font-size: 12px;
             color: #6c757d;
         }
-        
+
         .become-sponsor {
             display: block;
             text-align: center;
@@ -424,28 +462,30 @@
             font-weight: 500;
             transition: all 0.3s ease;
         }
-        
+
         .become-sponsor:hover {
             background: #3a5a80;
             transform: translateY(-2px);
         }
-        
+
         /* 响应式调整 */
         @media (max-width: 1200px) {
             .right-panel {
                 width: 250px;
             }
         }
-        
+
         @media (max-width: 992px) {
             .container {
                 flex-wrap: wrap;
             }
-            
-            .toolbar, .canvas-container, .right-panel {
+
+            .toolbar,
+            .canvas-container,
+            .right-panel {
                 width: 100%;
             }
-            
+
             .right-panel {
                 order: 3;
                 margin-top: 20px;
@@ -453,12 +493,13 @@
         }
     </style>
 </head>
+
 <body>
     <div class="header">
         <img src="https://s2.loli.net/2025/07/15/xJRrP4lsX2I3UFC.png" alt="Avatar衣帽间Logo" class="header-logo">
-        <h1>Avatar专属衣帽间</h1>
+        <h1>Avatar衣帽间</h1>
     </div>
-    
+
     <div class="container">
         <div class="toolbar">
             <div class="controls-header">
@@ -466,7 +507,7 @@
                 <button id="addBtn" style="width: 140px;">添加图片</button>
                 <button id="exportBtn" class="export-btn" style="width: 140px;">导出成品</button>
             </div>
-            
+
             <div class="toolbar-section">
                 <div class="checkbox-group">
                     <div class="checkbox-item">
@@ -479,7 +520,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="toolbar-section" style="flex: 1; min-height: 150px;">
                 <h3>图片管理</h3>
                 <div id="imageList" class="image-list-container"></div>
@@ -495,7 +536,7 @@
             </div>
             <div id="selectionBox" class="selection-box" style="display: none;"></div>
         </div>
-        
+
         <!-- 右侧面板 -->
         <div class="right-panel">
             <div class="panel-section">
@@ -514,7 +555,7 @@
                             选择后可以整体移动、缩放或应用统一操作。
                         </div>
                     </div>
-                    
+
                     <div class="tip-card" onclick="toggleTip(this)">
                         <div class="tip-header">
                             <div class="tip-title">精确定位</div>
@@ -525,7 +566,7 @@
                             启用网格和吸附功能可以更精确地对齐元素。
                         </div>
                     </div>
-                    
+
                     <div class="tip-card" onclick="toggleTip(this)">
                         <div class="tip-header">
                             <div class="tip-title">图层管理</div>
@@ -537,7 +578,7 @@
                             隐藏暂时不需要编辑的图层可提高效率。
                         </div>
                     </div>
-                    
+
                     <div class="tip-card" onclick="toggleTip(this)">
                         <div class="tip-header">
                             <div class="tip-title">高效导出</div>
@@ -551,7 +592,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="panel-section">
                 <div class="section-header">
                     <i class="fas fa-heart"></i>
@@ -559,17 +600,18 @@
                 </div>
                 <div class="sponsor-grid">
                     <div class="sponsor-card">
-                        <img src="https://s2.loli.net/2025/07/11/XG4eM6zt7AiHLyu.jpg" alt="Avatar设计工坊" class="sponsor-logo">
+                        <img src="https://s2.loli.net/2025/07/11/XG4eM6zt7AiHLyu.jpg" alt="Avatar设计工坊"
+                            class="sponsor-logo">
                         <div class="sponsor-name">支付宝扫码</div>
                         <!-- <div class="sponsor-desc">提供专业设计支持</div> -->
                     </div>
-                    
+
                     <div class="sponsor-card">
                         <img src="https://s2.loli.net/2025/07/11/Y7yXChklTZmGPKW.jpg" alt="虚拟时尚联盟" class="sponsor-logo">
                         <div class="sponsor-name">微信扫码</div>
                         <!-- <div class="sponsor-desc">最新潮流素材库</div> -->
                     </div>
-                    
+
                     <!-- <div class="sponsor-card">
                         <img src="https://s2.loli.net/2025/07/15/CxOa2Vf1hqRzYv7.png" alt="元宇宙基金会" class="sponsor-logo">
                         <div class="sponsor-name">元宇宙基金会</div>
@@ -582,7 +624,7 @@
                         <div class="sponsor-desc">创意孵化平台</div>
                     </div> -->
                 </div>
-                
+
                 <a href="#" class="become-sponsor">
                     <i class="fas fa-star"></i> 成为赞助商
                 </a>
@@ -626,7 +668,7 @@
         let isMultiSelecting = false;
         let selectStartX = 0, selectStartY = 0;
         let selectEndX = 0, selectEndY = 0;
-        
+
         // 框选组变量
         let selectionGroup = null;
         let selectionGroupOffsetX = 0;
@@ -648,7 +690,7 @@
             bindEvents();
             renderCanvas(); // 初始渲染
         }
-        
+
         function updateCanvasSize() {
             const container = document.querySelector('.canvas-container');
             canvas.width = Math.max(100, container.clientWidth);
@@ -660,14 +702,14 @@
             fileInput.addEventListener('change', handleImageUpload);
             exportBtn.addEventListener('click', exportAsPNG);
             gridToggle.addEventListener('change', renderCanvas);
-            
+
             canvas.addEventListener('mousedown', startDrag);
             canvas.addEventListener('mousemove', handleMouseMove);
             canvas.addEventListener('mouseup', endDrag);
             canvas.addEventListener('mouseout', endDrag);
             canvas.addEventListener('wheel', handleZoom, { passive: false });
             canvas.addEventListener('contextmenu', e => e.preventDefault());
-            
+
             document.addEventListener('keydown', handleKeyDown);
             document.addEventListener('keyup', handleKeyUp);
             window.addEventListener('resize', handleResize);
@@ -683,8 +725,8 @@
                     img.onload = () => {
                         const newImg = {
                             image: img,
-                            x: Math.max(0, Math.floor(Math.random() * (canvas.width - img.width/2))),
-                            y: Math.max(0, Math.floor(Math.random() * (canvas.height - img.height/2))),
+                            x: Math.max(0, Math.floor(Math.random() * (canvas.width - img.width / 2))),
+                            y: Math.max(0, Math.floor(Math.random() * (canvas.height - img.height / 2))),
                             zIndex: images.length,
                             opacity: 1,
                             visible: true,
@@ -710,7 +752,7 @@
             const item = document.createElement('div');
             item.className = 'image-item';
             item.dataset.index = index;
-            
+
             item.innerHTML = `
                 <div class="image-preview">
                     <img src="${src}" alt="${images[index].displayName}">
@@ -737,7 +779,7 @@
                     <button class="secondary-btn delete-btn" onclick="deleteImage(${index})">删除</button>
                 </div>
             `;
-            
+
             item.addEventListener('click', (e) => {
                 if (e.ctrlKey) {
                     toggleSelectImage(index);
@@ -745,25 +787,25 @@
                     selectSingleImage(index);
                 }
             });
-            
+
             imageList.appendChild(item);
             item.scrollIntoView({ behavior: "smooth", block: "nearest" });
         }
 
         // ====================== 图片操作函数 ====================== //
-        window.selectSingleImage = function(index) {
+        window.selectSingleImage = function (index) {
             if (!images[index]) return;
-            
+
             // 清除所有选中状态
             clearSelections();
-            
+
             // 选中新图片
             selectedImages.push(index);
             updateImageListSelection();
             renderCanvas();
         };
 
-        window.toggleSelectImage = function(index) {
+        window.toggleSelectImage = function (index) {
             const idx = selectedImages.indexOf(index);
             if (idx === -1) {
                 selectedImages.push(index);
@@ -785,38 +827,38 @@
             });
         }
 
-        window.toggleVisibility = function(index) {
+        window.toggleVisibility = function (index) {
             images[index].visible = !images[index].visible;
             const btn = document.querySelector(`.image-item[data-index="${index}"] .toggle-visibility-btn`);
             if (btn) btn.textContent = images[index].visible ? '隐藏' : '显示';
             renderCanvas();
         };
 
-        window.scaleImage = function(index, percent) {
+        window.scaleImage = function (index, percent) {
             const scaleValue = parseInt(percent) / 100;
             images[index].scale = scaleValue;
             images[index].width = images[index].originalWidth * scaleValue;
             images[index].height = images[index].originalHeight * scaleValue;
-            
+
             const display = document.querySelector(`.image-item[data-index="${index}"] .scale-display`);
             if (display) display.textContent = `${percent}%`;
             renderCanvas();
         };
 
         // 修复置顶/置底功能
-        window.moveLayer = function(index, action) {
+        window.moveLayer = function (index, action) {
             // 如果当前图片未被选中，则只移动该图片
             if (!selectedImages.includes(index)) {
                 clearSelections();
                 selectedImages.push(index);
             }
-            
+
             // 创建一个临时数组保存未选中的图片
             const unselectedImages = images.filter((_, i) => !selectedImages.includes(i));
-            
+
             // 获取选中的图片
             const selectedImageGroup = images.filter((_, i) => selectedImages.includes(i));
-            
+
             if (action === 'top') {
                 // 置顶：将选中的图片移动到最上面
                 images = [...unselectedImages, ...selectedImageGroup];
@@ -824,33 +866,33 @@
                 // 置底：将选中的图片移动到最下面
                 images = [...selectedImageGroup, ...unselectedImages];
             }
-            
+
             // 更新zIndex
             images.forEach((img, i) => {
                 img.zIndex = i;
             });
-            
+
             rebuildImageList();
             renderCanvas();
         };
 
-        window.deleteImage = function(index) {
+        window.deleteImage = function (index) {
             // 如果当前图片未被选中，则只删除该图片
             if (!selectedImages.includes(index)) {
                 clearSelections();
                 selectedImages.push(index);
             }
-            
+
             // 按索引从大到小排序，避免删除后索引变化
             selectedImages.sort((a, b) => b - a).forEach(i => {
                 images.splice(i, 1);
             });
-            
+
             images.forEach((img, i) => {
                 img.zIndex = i;
                 img.displayName = `图片${i + 1}`;
             });
-            
+
             rebuildImageList();
             clearSelections();
             renderCanvas();
@@ -867,12 +909,12 @@
             const rect = canvas.getBoundingClientRect();
             const mouseX = e.clientX - rect.left;
             const mouseY = e.clientY - rect.top;
-            
+
             const canvasX = Math.round((mouseX - startX) / scale);
             const canvasY = Math.round((mouseY - startY) / scale);
-            
+
             snapLock = { horizontal: false, vertical: false };
-            
+
             if (e.button === 2) { // 右键拖拽画布
                 isDragging = true;
                 startX = e.clientX - startX;
@@ -880,7 +922,7 @@
                 canvas.style.cursor = 'grabbing';
                 return;
             }
-            
+
             // 按住Shift键进入多选模式
             if (e.shiftKey) {
                 isMultiSelecting = true;
@@ -893,15 +935,15 @@
                 canvas.style.cursor = 'crosshair';
                 return;
             }
-            
+
             // 检测图片选择
             for (let i = images.length - 1; i >= 0; i--) {
                 const img = images[i];
                 if (!img.visible) continue;
-                
+
                 if (canvasX > img.x && canvasX < img.x + img.width &&
                     canvasY > img.y && canvasY < img.y + img.height) {
-                    
+
                     // 如果图片已经被选中，则保持选中状态
                     if (!selectedImages.includes(i)) {
                         if (!e.ctrlKey) {
@@ -910,11 +952,11 @@
                         selectedImages.push(i);
                         updateImageListSelection();
                     }
-                    
+
                     isDragging = true;
                     offsetX = canvasX - img.x;
                     offsetY = canvasY - img.y;
-                    
+
                     // 记录选中图片的初始位置和偏移量（关键优化）
                     initialPositions = selectedImages.map(index => {
                         const img = images[index];
@@ -926,12 +968,12 @@
                             offsetY: canvasY - img.y   // 鼠标到图片左上角的Y偏移
                         };
                     });
-                    
+
                     canvas.style.cursor = 'grabbing';
                     return;
                 }
             }
-            
+
             // 未选中图片
             clearSelections();
         }
@@ -940,11 +982,11 @@
             const rect = canvas.getBoundingClientRect();
             const mouseX = e.clientX - rect.left;
             const mouseY = e.clientY - rect.top;
-            
+
             const canvasX = Math.round((mouseX - startX) / scale);
             const canvasY = Math.round((mouseY - startY) / scale);
             cursorPos.textContent = `X: ${canvasX}, Y: ${canvasY}`;
-            
+
             if (isDragging) {
                 drag(e);
             }
@@ -964,13 +1006,13 @@
             const bottom = Math.max(selectStartY, selectEndY);
             const width = right - left;
             const height = bottom - top;
-            
+
             // 转换为页面坐标
             const pageLeft = left * scale + startX;
             const pageTop = top * scale + startY;
             const pageWidth = width * scale;
             const pageHeight = height * scale;
-            
+
             // 更新选框位置和尺寸
             selectionBox.style.left = `${pageLeft}px`;
             selectionBox.style.top = `${pageTop}px`;
@@ -985,67 +1027,67 @@
 
         function drag(e) {
             if (!isDragging) return;
-            
+
             // 使用requestAnimationFrame确保60FPS流畅性
             requestAnimationFrame(() => {
                 const rect = canvas.getBoundingClientRect();
                 const mouseX = (e.clientX - rect.left - startX) / scale;
                 const mouseY = (e.clientY - rect.top - startY) / scale;
-                
+
                 if (e.button === 2 && selectedImages.length === 0) {
                     startX = e.clientX - startX;
                     startY = e.clientY - startY;
                     renderCanvas();
                     return;
                 }
-                
+
                 if (selectedImages.length === 0) return;
-                
+
                 // 重置吸附状态
                 horizontalGuides.clear();
                 verticalGuides.clear();
                 snapIndicators = [];
-                
+
                 // 更新所有选中图片的位置（保持相对位置不变）
                 selectedImages.forEach((index, i) => {
                     const img = images[index];
                     const initial = initialPositions.find(pos => pos.index === index);
-                    
+
                     if (initial) {
                         // 计算目标位置（基于初始偏移量）
                         const targetX = mouseX - initial.offsetX;
                         const targetY = mouseY - initial.offsetY;
-                        
+
                         // 应用平滑移动（避免跳跃）
                         img.x = smoothMove(img.x, targetX);
                         img.y = smoothMove(img.y, targetY);
-                        
+
                         // =========== 关键修复开始 ===========
                         // 计算缩放后的画布实际尺寸（解决缩放边界问题）
                         const scaledCanvasWidth = canvas.width / scale;
                         const scaledCanvasHeight = canvas.height / scale;
-                        
+
                         // 动态边界保护（考虑缩放后的画布尺寸） 
                         // 使用边界裕量允许图片在缩放后移动到画布外
                         const BOUNDARY_MARGIN = 10000; // 允许图片超出画布的范围
-                        
+
                         img.x = Math.max(
-                            -BOUNDARY_MARGIN, 
+                            -BOUNDARY_MARGIN,
                             Math.min(img.x, scaledCanvasWidth - img.width + BOUNDARY_MARGIN)
                         );
                         img.y = Math.max(
-                            -BOUNDARY_MARGIN, 
+                            -BOUNDARY_MARGIN,
                             Math.min(img.y, scaledCanvasHeight - img.height + BOUNDARY_MARGIN)
                         );
                         // =========== 关键修复结束 ===========
                     }
                 });
-                
+
                 // 启用吸附检测
                 if (snapToggle.checked && !e.ctrlKey && selectedImages.length > 0) {
                     checkAlignmentPoints();
                 }
-                
+
                 renderCanvas();
             });
         }
@@ -1054,7 +1096,7 @@
             if (isMultiSelecting) {
                 finishMultiSelect();
             }
-            
+
             isDragging = false;
             isMultiSelecting = false;
             horizontalGuides.clear();
@@ -1065,30 +1107,30 @@
             initialPositions = []; // 清除初始位置记录
             renderCanvas();
         }
-        
+
         function finishMultiSelect() {
             // 计算实际选区范围（兼容任意拖动方向）
             const left = Math.min(selectStartX, selectEndX);
             const top = Math.min(selectStartY, selectEndY);
             const right = Math.max(selectStartX, selectEndX);
             const bottom = Math.max(selectStartY, selectEndY);
-            
+
             // 清除当前选择
             clearSelections();
-            
+
             // 添加框选范围内的图片
             images.forEach((img, index) => {
                 if (!img.visible) return;
-                
-                const imgCenterX = img.x + img.width/2;
-                const imgCenterY = img.y + img.height/2;
-                
-                if (imgCenterX > left && imgCenterX < right && 
+
+                const imgCenterX = img.x + img.width / 2;
+                const imgCenterY = img.y + img.height / 2;
+
+                if (imgCenterX > left && imgCenterX < right &&
                     imgCenterY > top && imgCenterY < bottom) {
                     selectedImages.push(index);
                 }
             });
-            
+
             // 记录初始位置（用于保持相对位置）
             initialPositions = selectedImages.map(index => ({
                 index,
@@ -1097,7 +1139,7 @@
                 offsetX: 0,
                 offsetY: 0
             }));
-            
+
             updateImageListSelection();
         }
 
@@ -1106,17 +1148,17 @@
             const rect = canvas.getBoundingClientRect();
             const mouseX = e.clientX - rect.left;
             const mouseY = e.clientY - rect.top;
-            
+
             const canvasX = (mouseX - startX) / scale;
             const canvasY = (mouseY - startY) / scale;
-            
+
             const delta = e.deltaY > 0 ? -0.1 : 0.1;
             const newScale = Math.max(0.5, Math.min(3, scale + delta));
-            
+
             // 基于鼠标位置缩放
             startX -= (canvasX * (newScale - scale));
             startY -= (canvasY * (newScale - scale));
-            
+
             scale = newScale;
             zoomLevel.textContent = Math.round(scale * 100) + '%';
             renderCanvas();
@@ -1135,7 +1177,7 @@
             if (e.key === 'Shift') {
                 operationTip.style.display = 'none';
             }
-            
+
             if ((e.key === 'Delete' || e.key === 'Backspace') && selectedImages.length > 0) {
                 // 从大到小排序索引，然后删除
                 selectedImages.sort((a, b) => b - a).forEach(index => {
@@ -1144,27 +1186,27 @@
                 rebuildImageList();
                 clearSelections();
             }
-            
+
             if (selectedImages.length > 0) {
                 const step = e.shiftKey ? 10 : (gridSize > 0 ? gridSize : 5);
-                switch(e.key) {
-                    case 'ArrowUp': 
-                        selectedImages.forEach(index => images[index].y -= step); 
+                switch (e.key) {
+                    case 'ArrowUp':
+                        selectedImages.forEach(index => images[index].y -= step);
                         break;
-                    case 'ArrowDown': 
-                        selectedImages.forEach(index => images[index].y += step); 
+                    case 'ArrowDown':
+                        selectedImages.forEach(index => images[index].y += step);
                         break;
-                    case 'ArrowLeft': 
-                        selectedImages.forEach(index => images[index].x -= step); 
+                    case 'ArrowLeft':
+                        selectedImages.forEach(index => images[index].x -= step);
                         break;
-                    case 'ArrowRight': 
-                        selectedImages.forEach(index => images[index].x += step); 
+                    case 'ArrowRight':
+                        selectedImages.forEach(index => images[index].x += step);
                         break;
                 }
                 renderCanvas();
             }
         }
-        
+
         function handleKeyUp(e) {
             // 松开Shift键时显示操作提示
             if (e.key === 'Shift') {
@@ -1175,7 +1217,7 @@
         // ====================== PPT吸附系统 ====================== //
         function checkAlignmentPoints() {
             if (selectedImages.length === 0) return;
-            
+
             // 只使用第一个选中图片进行吸附检测
             const index = selectedImages[0];
             const img = images[index];
@@ -1184,8 +1226,8 @@
                 right: img.x + img.width,
                 top: img.y,
                 bottom: img.y + img.height,
-                centerX: img.x + img.width/2,
-                centerY: img.y + img.height/2
+                centerX: img.x + img.width / 2,
+                centerY: img.y + img.height / 2
             };
 
             // 1. 画布边缘吸附
@@ -1193,8 +1235,8 @@
             checkSnapPoint(imgPoints.right, canvas.width, 'vertical', SNAP_MODE.EDGE);
             checkSnapPoint(imgPoints.top, 0, 'horizontal', SNAP_MODE.EDGE);
             checkSnapPoint(imgPoints.bottom, canvas.height, 'horizontal', SNAP_MODE.EDGE);
-            checkSnapPoint(imgPoints.centerX, canvas.width/2, 'vertical', SNAP_MODE.CENTER);
-            checkSnapPoint(imgPoints.centerY, canvas.height/2, 'horizontal', SNAP_MODE.CENTER);
+            checkSnapPoint(imgPoints.centerX, canvas.width / 2, 'vertical', SNAP_MODE.CENTER);
+            checkSnapPoint(imgPoints.centerY, canvas.height / 2, 'horizontal', SNAP_MODE.CENTER);
 
             // 2. 其他对象吸附
             images.forEach((otherImg, otherIndex) => {
@@ -1204,8 +1246,8 @@
                     right: otherImg.x + otherImg.width,
                     top: otherImg.y,
                     bottom: otherImg.y + otherImg.height,
-                    centerX: otherImg.x + otherImg.width/2,
-                    centerY: otherImg.y + otherImg.height/2
+                    centerX: otherImg.x + otherImg.width / 2,
+                    centerY: otherImg.y + otherImg.height / 2
                 };
 
                 // 边缘对齐
@@ -1233,14 +1275,14 @@
                 else verticalGuides.add(pos2);
 
                 // 动态磁吸
-                if (diff < threshold/2 && selectedImages.length > 0) {
+                if (diff < threshold / 2 && selectedImages.length > 0) {
                     const axis = orientation === 'horizontal' ? 'vertical' : 'horizontal';
                     if (!snapLock[axis]) {
                         const img = images[selectedImages[0]];
                         if (orientation === 'horizontal') {
-                            img.y = pos2 - (mode === SNAP_MODE.EDGE ? offsetY : img.height/2);
+                            img.y = pos2 - (mode === SNAP_MODE.EDGE ? offsetY : img.height / 2);
                         } else {
-                            img.x = pos2 - (mode === SNAP_MODE.EDGE ? offsetX : img.width/2);
+                            img.x = pos2 - (mode === SNAP_MODE.EDGE ? offsetX : img.width / 2);
                         }
                         snapLock[axis] = true;
                     }
@@ -1287,17 +1329,17 @@
             const now = Date.now();
             if (now - lastRenderTime < FRAME_DELAY) return;
             lastRenderTime = now;
-            
+
             ctx.save();
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
+
             // 1. 绘制网格（背景层）
             drawGrid();
-            
+
             // 2. 应用变换
             ctx.translate(startX, startY);
             ctx.scale(scale, scale);
-            
+
             // 3. 绘制图片（内容层）
             [...images]
                 .sort((a, b) => a.zIndex - b.zIndex)
@@ -1306,51 +1348,51 @@
                     ctx.globalAlpha = img.opacity;
                     ctx.drawImage(img.image, img.x, img.y, img.width, img.height);
                 });
-            
+
             ctx.globalAlpha = 1;
-            
+
             // 4. 绘制辅助线（顶层）
             drawAlignmentGuides();
-            
+
             // 5. 绘制选中框
             selectedImages.forEach(index => {
                 const img = images[index];
                 if (!img.visible) return;
-                
+
                 ctx.strokeStyle = '#4a6fa5';
                 ctx.lineWidth = 2;
                 ctx.setLineDash([5, 3]);
                 ctx.strokeRect(
-                    img.x - 5, 
+                    img.x - 5,
                     img.y - 5,
                     img.width + 10,
                     img.height + 10
                 );
                 ctx.setLineDash([]);
             });
-            
+
             // 6. 绘制吸附指示器
             drawSnapIndicators();
-            
+
             ctx.restore();
         }
 
         function drawGrid() {
             if (!gridToggle.checked || gridSize < 5) return;
-            
+
             ctx.save();
             // 移除重置变换矩阵的代码，保留当前变换状态
-            
+
             ctx.strokeStyle = 'rgba(200, 200, 220, 0.6)';
             ctx.lineWidth = 0.5;
-            
+
             // 计算缩放后的网格尺寸
             const scaledGridSize = gridSize * scale;
-            
+
             // 计算偏移量（考虑画布平移）
             const offsetX = startX % scaledGridSize;
             const offsetY = startY % scaledGridSize;
-            
+
             // 绘制水平网格线
             for (let y = -offsetY; y <= canvas.height; y += scaledGridSize) {
                 ctx.beginPath();
@@ -1358,7 +1400,7 @@
                 ctx.lineTo(canvas.width, y);
                 ctx.stroke();
             }
-            
+
             // 绘制垂直网格线
             for (let x = -offsetX; x <= canvas.width; x += scaledGridSize) {
                 ctx.beginPath();
@@ -1366,32 +1408,32 @@
                 ctx.lineTo(x, canvas.height);
                 ctx.stroke();
             }
-            
+
             ctx.restore();
         }
 
         function drawAlignmentGuides() {
             if (horizontalGuides.size === 0 && verticalGuides.size === 0) return;
-            
+
             ctx.save();
             ctx.strokeStyle = '#FF6B6B';
             ctx.setLineDash([5, 3]);
             ctx.lineWidth = 1;
-            
+
             horizontalGuides.forEach(y => {
                 ctx.beginPath();
                 ctx.moveTo(0, y);
                 ctx.lineTo(canvas.width, y);
                 ctx.stroke();
             });
-            
+
             verticalGuides.forEach(x => {
                 ctx.beginPath();
                 ctx.moveTo(x, 0);
                 ctx.lineTo(x, canvas.height);
                 ctx.stroke();
             });
-            
+
             ctx.restore();
         }
 
@@ -1399,7 +1441,7 @@
             ctx.save();
             snapIndicators.forEach(indicator => {
                 ctx.fillStyle = indicator.color;
-                
+
                 if (indicator.type === 'horizontal') {
                     ctx.beginPath();
                     ctx.moveTo(0, indicator.position);
@@ -1407,9 +1449,9 @@
                     ctx.strokeStyle = `${indicator.color}80`;
                     ctx.lineWidth = 1;
                     ctx.stroke();
-                    
+
                     // 绘制端点圆点
-                    drawIndicatorDot(canvas.width/2, indicator.position, indicator.size);
+                    drawIndicatorDot(canvas.width / 2, indicator.position, indicator.size);
                 } else {
                     ctx.beginPath();
                     ctx.moveTo(indicator.position, 0);
@@ -1417,8 +1459,8 @@
                     ctx.strokeStyle = `${indicator.color}80`;
                     ctx.lineWidth = 1;
                     ctx.stroke();
-                    
-                    drawIndicatorDot(indicator.position, canvas.height/2, indicator.size);
+
+                    drawIndicatorDot(indicator.position, canvas.height / 2, indicator.size);
                 }
             });
             ctx.restore();
@@ -1426,7 +1468,7 @@
 
         function drawIndicatorDot(x, y, size) {
             ctx.beginPath();
-            ctx.arc(x, y, size, 0, Math.PI*2);
+            ctx.arc(x, y, size, 0, Math.PI * 2);
             ctx.fill();
             ctx.strokeStyle = 'white';
             ctx.lineWidth = 1;
@@ -1440,52 +1482,52 @@
                 alert('没有可导出的图片内容');
                 return;
             }
-            
+
             const tempCanvas = document.createElement('canvas');
             tempCanvas.width = contentRect.width;
             tempCanvas.height = contentRect.height;
             const tempCtx = tempCanvas.getContext('2d');
-            
+
             // 填充白色背景
             tempCtx.fillStyle = 'white';
             tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
-            
+
             // 绘制可见图片
             images.filter(img => img.visible)
                 .sort((a, b) => a.zIndex - b.zIndex)
                 .forEach(img => {
                     tempCtx.drawImage(
-                        img.image, 
+                        img.image,
                         img.x - contentRect.left,
                         img.y - contentRect.top,
                         img.width,
                         img.height
                     );
                 });
-            
+
             const link = document.createElement('a');
             link.download = `Avatar衣帽间-${new Date().toISOString().slice(0, 10)}.png`;
             link.href = tempCanvas.toDataURL('image/png');
             link.click();
         }
-        
+
         function calculateContentBoundingBox() {
             let minX = Infinity, minY = Infinity;
             let maxX = -Infinity, maxY = -Infinity;
-            
+
             images.filter(img => img.visible).forEach(img => {
                 minX = Math.min(minX, img.x);
                 minY = Math.min(minY, img.y);
                 maxX = Math.max(maxX, img.x + img.width);
                 maxY = Math.max(maxY, img.y + img.height);
             });
-            
-            if (minX === Infinity) return { left:0, top:0, width:0, height:0 };
-            
+
+            if (minX === Infinity) return { left: 0, top: 0, width: 0, height: 0 };
+
             return {
-                left: minX, 
+                left: minX,
                 top: minY,
-                width: maxX - minX, 
+                width: maxX - minX,
                 height: maxY - minY
             };
         }
@@ -1506,4 +1548,5 @@
         });
     </script>
 </body>
+
 </html>
